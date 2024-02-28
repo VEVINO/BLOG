@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+        <li>{{ comment.content }}</li>
+        {% else %}
+        <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Add a comment</h3>
+   <form id="commentForm" action="{{ url_for('add_comment') }}" method="post">
+    <textarea name="content" required></textarea>
+    <input type="hidden" name="article_id" value="{{ article.id }}">
+    <button type="submit" onclick="redirectToITFactory()">Submit</button>
+</form>
+
+<script>
+    function redirectToITFactory() {
+        // Redirecționează utilizatorul către pagina https://www.itfactory.ro/ folosind JavaScript
+        window.location.href = 'https://www.itfactory.ro/';
+    }
+</script>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
+
+
+<!--# reper si folosit metodologie din (https://ocw.cs.pub.ro/courses/ii/lab/laborator5 ; https://www.geeksforgeeks.org/templating-with-jinja2-in-flask/)-->
+<!--# Este o combinație de HTML și Jinja2, iar Jinja2 este folosit pentru a itera prin articolele din listă-->
+<!--# și pentru a afișa dinamic informațiile relevante despre fiecare articol.-->
+<!--# TIP : In HTML foloseste >   Ctrl+Slash  > pentru a comenta codul scris-->
